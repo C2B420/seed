@@ -1,30 +1,95 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="nav" :class="{'nav-show': navIsShow, 'nav-hidden': !navIsShow}">
+    <ul>
+      <li>
+        <router-link to="/pictureDisplay210509" class="router-link" @click="navIsShow = false">
+          <i class="fa fa-calendar-check-o"></i>
+          图片/相册展示设计
+        </router-link>
+      </li>
+    </ul>
+    <div class="nav-control-btn"
+         @click="navIsShow = !navIsShow">
+      <i class="fa fa-chevron-circle-left"
+         :class="{'nav-control-right': navIsShow, 'nav-control-left': !navIsShow}"></i>
+    </div>
   </div>
-  <router-view/>
+  <div id='main-container'>
+    <router-view/>
+  </div>
 </template>
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      navIsShow: false,
+    };
+  },
+  methods: {},
+};
+</script>
+<style scoped lang="less">
+  #main-container {
+    width: 100%;
+    height: 100%;
+  }
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  #nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: @_nav_w;
+    background-color: @_nav_bgc;
+    border-radius: 0 10px 10px 0;
+    transition: margin-left 500ms;
 
-#nav {
-  padding: 30px;
+    &.nav-show {
+      margin-left: 0;
+    }
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+    &.nav-hidden {
+      margin-left: -@_nav_w;
+    }
 
-    &.router-link-exact-active {
-      color: #42b983;
+    ul {
+      li {
+        height: 30px;
+
+        .router-link {
+          display: block;
+          height: 100%;
+          line-height: 30px;
+          padding-left: 10px;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .nav-control-btn {
+      .absolute_vertical_center();
+      right: -15px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      background-color: darken(@_nav_bgc, 20%);;
+
+      i {
+        color: @_nav_bgc;
+        font-size: 28px;
+        line-height: 30px;
+        transition: transform 500ms;
+
+        &.nav-control-left {
+          transform: rotateZ(0);
+        }
+
+        &.nav-control-left {
+          transform: rotateZ(-180deg);
+        }
+      }
     }
   }
-}
 </style>
