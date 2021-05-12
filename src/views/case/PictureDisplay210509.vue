@@ -27,6 +27,39 @@
            @click="imgActiveIndex = imgActiveIndex + 1 > 2 ? 0 : imgActiveIndex + 1">
         <i class="fa fa-chevron-right"></i>
       </div>
+      <div class="text-content"
+           :class="{'show': imgActiveIndex === 0, 'hidden': imgActiveIndex !== 0}">
+        <div class="text-title">
+          Steak
+        </div>
+        <div class="line"></div>
+        <div class="text-description">
+          Chunky beef is one of the most common foods in Western cuisine. Steak cooking methods are
+          mainly fried and barbecued.
+        </div>
+      </div>
+      <div class="text-content"
+           :class="{'show': imgActiveIndex === 1, 'hidden': imgActiveIndex !== 1}">
+        <div class="text-title">
+          Salad
+        </div>
+        <div class="line"></div>
+        <div class="text-description">
+          It is a common dish in western food, usually as a side dish or appetizer, sometimes as a
+          main dish.
+        </div>
+      </div>
+      <div class="text-content"
+           :class="{'show': imgActiveIndex === 2, 'hidden': imgActiveIndex !== 2}">
+        <div class="text-title">
+          Hamburger
+        </div>
+        <div class="line"></div>
+        <div class="text-description">
+          It is a food with ground meat in a round bread, which is a sandwich by definition, and is
+          now a recognized representative of American fast food.
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -198,6 +231,50 @@ export default {
       .absolute_vertical_center();
       .arrow_common();
       right: @_arrow_distance;
+    }
+
+    .text-content {
+      .absolute_center();
+      margin-top: 100px;
+      z-index: 3;
+      width: 400px;
+      height: 300px;
+      color: white;
+      font-family: Monospaced, sans-serif, serif;
+      overflow: hidden;
+      transition: opacity 1.2s;
+
+      &.show {
+        opacity: 1;
+      }
+
+      &.hidden {
+        opacity: 0;
+      }
+
+      .text-title {
+        position: relative;
+        margin-top: 50px;
+        font-size: 60px;
+        font-weight: bolder;
+      }
+
+      .line {
+        width: 50%;
+        height: 5px;
+        border-radius: 2px;
+        margin: 10px 0;
+        background-color: white;
+      }
+
+      .text-description {
+        font-size: 20px;
+        line-height: 1.3;
+
+        &:first-letter {
+          font-size: 40px;
+        }
+      }
     }
   }
 
