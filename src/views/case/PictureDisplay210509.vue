@@ -1,9 +1,14 @@
 <template>
+  <div class="loading" :class="{'show': isLoading, 'hidden': !isLoading}">
+    <div class="loading-tips">
+      <i class="fa fa-spinner" :class="{'rotate': isLoading}"></i> loading
+    </div>
+  </div>
   <div class="picture-display-background"
        :style="{'background-image': 'url(' + backgroundImageUrl + ')'}">
     <div class="mask"></div>
   </div>
-  <div class="picture-display-container">
+  <div class="picture-display-container" :class="{'show': !isLoading, 'hidden': isLoading}">
     <div class="wrapper">
       <div class="inner" v-for="(imgUrl, index) in imgUrl" :key="index + '-' + imgUrl"
            :class="{
@@ -37,6 +42,7 @@ export default {
         'https://source.unsplash.com/cVqNYbeN1WY',
       ],
       imgActiveIndex: 1,
+      isLoading: true,
     };
   },
   computed: {
@@ -44,10 +50,30 @@ export default {
       return this.imgUrl[this.imgActiveIndex];
     },
   },
+  mounted() {
+    let flag = 0;
+    this.imgUrl.forEach((imgUrl) => {
+      const img = new Image();
+      img.src = imgUrl;
+      img.onload = () => {
+        flag += 1;
+        this.isLoading = flag / this.imgUrl.length < 1;
+      };
+    });
+  },
 };
 </script>
 
 <style scoped lang="less">
+  @keyframes loadingRotate {
+    from {
+      transform: rotateZ(0);
+    }
+    to {
+      transform: rotateZ(360deg);
+    }
+  }
+
   @_arrow_distance: 70px;
   .arrow_common {
     z-index: 99;
@@ -93,6 +119,15 @@ export default {
     width: 100%;
     height: 100%;
     overflow: auto;
+    transition: top 1s ease-out;
+
+    &.show {
+      top: 0
+    }
+
+    &.hidden {
+      top: -100%
+    }
 
     .wrapper {
       position: relative;
@@ -163,6 +198,43 @@ export default {
       .absolute_vertical_center();
       .arrow_common();
       right: @_arrow_distance;
+    }
+  }
+
+  .loading {
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.7;
+    transition: top 1s ease-in;
+
+    &.show {
+      top: 0;
+    }
+
+    &.hidden {
+      top: -100%;
+    }
+
+    .loading-tips {
+      .absolute_center();
+      width: 150px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 20px;
+      color: rgba(255, 255, 255, .3);
+      text-align: center;
+      background-image: linear-gradient(to right, red, yellow);
+      background-repeat: no-repeat;
+      -webkit-background-clip: text;
+
+      .rotate {
+        color: orangered;
+        animation: loadingRotate 2s infinite linear;
+      }
     }
   }
 </style>
