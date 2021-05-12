@@ -5,11 +5,25 @@
   transform: translateX(-50%);
 }
 
+/* 已知宽度的定位元素的水平居中 */
+.absolute_hasW_horizontal_center(@w) {
+  position: absolute;
+  left: 50%;
+  margin-left: -@w/2px;
+}
+
 /* 定位元素的垂直居中 */
 .absolute_vertical_center {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* 定位元素的垂直居中 */
+.absolute_hasH_vertical_center(@h) {
+  position: absolute;
+  top: 50%;
+  margin-top: -@h/2px;
 }
 
 /* 定位元素的垂直水平居中 */
@@ -18,6 +32,15 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* 已知宽高的定位元素的垂直水平居中 */
+.absolute_hasWH_center(@w, @h) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -@w/2px;
+  margin-top: -@h/2px;
 }
 
 /* 背景虚化 */
