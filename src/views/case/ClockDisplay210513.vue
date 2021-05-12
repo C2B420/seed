@@ -1,14 +1,14 @@
 <template>
   <div class="wrapper">
     <div class="inner">
-      <digital-flip-card>{{hour[0]}}</digital-flip-card>
-      <digital-flip-card>{{hour[1]}}</digital-flip-card>
+      <digital-flip-card :number="hour[0]"/>
+      <digital-flip-card :number="hour[1]"/>
       <colon/>
-      <digital-flip-card>{{minute[0]}}</digital-flip-card>
-      <digital-flip-card>{{minute[1]}}</digital-flip-card>
+      <digital-flip-card :number="minute[0]"/>
+      <digital-flip-card :number="minute[1]"/>
       <colon/>
-      <digital-flip-card>{{second[0]}}</digital-flip-card>
-      <digital-flip-card>{{second[1]}}</digital-flip-card>
+      <digital-flip-card :number="second[0]"/>
+      <digital-flip-card :number="second[1]"/>
     </div>
   </div>
 </template>

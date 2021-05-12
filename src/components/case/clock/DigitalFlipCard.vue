@@ -8,7 +8,7 @@
           'font-size': fontSize + 'px',
         }">
     <span :style="{'line-height': height + 'px'}">
-      <slot></slot>
+      {{number}}
     </span>
     <div class="line"></div>
   </div>
@@ -37,6 +37,10 @@ export default {
     fontSize: {
       type: Number,
       default: 90,
+    },
+    number: {
+      type: String,
+      default: '0',
     },
   },
 };
