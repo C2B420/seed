@@ -12,13 +12,13 @@
   </div>
   <div class="picture-display-container" :class="{'show': !isLoading, 'hidden': isLoading}">
     <div class="wrapper">
-      <div class="inner" v-for="(imgUrl, index) in imgUrl" :key="index + '-' + imgUrl"
+      <div class="inner" v-for="(img, index) in imgInfo" :key="index + '-' + img.url"
            :class="{
               'left': imgActiveIndex === (index + 1) % 3,
               'middle': imgActiveIndex === index,
               'right': imgActiveIndex === (index + 2) % 3,
             }">
-        <img :src="imgUrl" :alt="imgUrl">
+        <img :src="img.url" :alt="img.title">
         <div :class="{'mask': imgActiveIndex !== index}"></div>
       </div>
       <div class="left-arrow"
@@ -29,37 +29,14 @@
            @click="imgActiveIndex = imgActiveIndex + 1 > 2 ? 0 : imgActiveIndex + 1">
         <i class="fa fa-chevron-right"></i>
       </div>
-      <div class="text-content"
-           :class="{'show': imgActiveIndex === 0, 'hidden': imgActiveIndex !== 0}">
+      <div class="text-content" v-for="(img, index) in imgInfo" :key="index + '-' + img.title"
+           :class="{'show': imgActiveIndex === index, 'hidden': imgActiveIndex !== index}">
         <div class="text-title">
-          Steak
+          {{img.title}}
         </div>
         <div class="line"></div>
         <div class="text-description">
-          Chunky beef is one of the most common foods in Western cuisine. Steak cooking methods are
-          mainly fried and barbecued.
-        </div>
-      </div>
-      <div class="text-content"
-           :class="{'show': imgActiveIndex === 1, 'hidden': imgActiveIndex !== 1}">
-        <div class="text-title">
-          Salad
-        </div>
-        <div class="line"></div>
-        <div class="text-description">
-          It is a common dish in western food, usually as a side dish or appetizer, sometimes as a
-          main dish.
-        </div>
-      </div>
-      <div class="text-content"
-           :class="{'show': imgActiveIndex === 2, 'hidden': imgActiveIndex !== 2}">
-        <div class="text-title">
-          Hamburger
-        </div>
-        <div class="line"></div>
-        <div class="text-description">
-          It is a food with ground meat in a round bread, which is a sandwich by definition, and is
-          now a recognized representative of American fast food.
+          {{img.description}}
         </div>
       </div>
     </div>
@@ -71,28 +48,36 @@ export default {
   name: 'PictureDisplay210509',
   data() {
     return {
-      imgUrl: [
-        'https://source.unsplash.com/8GNkoWJTchc',
-        'https://source.unsplash.com/jUPOXXRNdcA',
-        'https://source.unsplash.com/cVqNYbeN1WY',
-      ],
-      imgActiveIndex: 1,
       isLoading: true,
+      imgActiveIndex: 1,
+      imgInfo: [{
+        url: 'https://source.unsplash.com/8GNkoWJTchc',
+        title: 'Steak',
+        description: 'Chunky beef is one of the most common foods in Western cuisine. Steak cooking methods are mainly fried and barbecued.',
+      }, {
+        url: 'https://source.unsplash.com/jUPOXXRNdcA',
+        title: 'Salad',
+        description: 'It is a common dish in western food, usually as a side dish or appetizer, sometimes as a main dish.',
+      }, {
+        url: 'https://source.unsplash.com/cVqNYbeN1WY',
+        title: 'Hamburger',
+        description: 'It is a food with ground meat in a round bread, which is a sandwich by definition, and is now a recognized representative of American fast food.',
+      }],
     };
   },
   computed: {
     backgroundImageUrl() {
-      return this.imgUrl[this.imgActiveIndex];
+      return this.imgInfo[this.imgActiveIndex].url;
     },
   },
   mounted() {
     let flag = 0;
-    this.imgUrl.forEach((imgUrl) => {
+    this.imgInfo.forEach((item) => {
       const img = new Image();
-      img.src = imgUrl;
+      img.src = item.url;
       img.onload = () => {
         flag += 1;
-        this.isLoading = flag / this.imgUrl.length < 1;
+        this.isLoading = flag / this.imgInfo.length < 1;
       };
     });
   },
