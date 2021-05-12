@@ -1,7 +1,9 @@
 <template>
   <div class="loading" :class="{'show': isLoading, 'hidden': !isLoading}">
     <div class="loading-tips">
-      <i class="fa fa-spinner" :class="{'rotate': isLoading}"></i> loading
+      <i class="fa fa-spinner" :class="{'rotate': isLoading}" v-show="isLoading"></i>
+      <i class="fa fa-check" v-show="!isLoading"></i>
+      loading
     </div>
   </div>
   <div class="picture-display-background"
