@@ -28,7 +28,7 @@ export default {
     },
     bgColor: {
       type: String,
-      default: '#000000',
+      default: '#323232',
     },
     color: {
       type: String,
@@ -49,7 +49,9 @@ export default {
     border-radius: 12px;
     font-weight: bolder;
     text-align: center;
-    .line{
+    box-shadow: 0 0 5px #323232;
+
+    .line {
       .absolute_vertical_center();
       width: 100%;
       height: 1px;
