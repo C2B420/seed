@@ -7,6 +7,12 @@
           图片/相册展示设计
         </router-link>
       </li>
+      <li>
+        <router-link to="/clockDisplay210513" class="router-link" @click="navIsShow = false">
+          <i class="fa fa-calendar-check-o"></i>
+          卡片反转时钟
+        </router-link>
+      </li>
     </ul>
     <div class="nav-control-btn"
          @click="navIsShow = !navIsShow">
