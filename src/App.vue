@@ -13,6 +13,12 @@
           卡片反转时钟
         </router-link>
       </li>
+      <li>
+        <router-link to="/menuDisplay210514" class="router-link" @click="navIsShow = false">
+          <i class="fa fa-calendar-check-o"></i>
+          旋转菜单
+        </router-link>
+      </li>
     </ul>
     <div class="nav-control-btn"
          @click="navIsShow = !navIsShow">
