@@ -14,11 +14,14 @@ export function GetDateStrAddDays(n) {
 }
 
 /**
- * 获取格式为 HH:mm:ss 的日期时间格式
+ * 获取格式为 HH:mm:ss 的时间格式
+ * n < 0，获取n秒前的时间；n = 0，获取当前的时间；n > 0，获取n秒后的时间
+ * @param {number} n - 距当天日期的相差天数
  * @returns {string}
  */
-export function GetTimeStr() {
-  const dd = new Date();
+export function GetTimeStr(n) {
+  const d = new Date();
+  const dd = new Date(d.getTime() + (n * 1000));
   const h = dd.getHours() < 10 ? `0${dd.getHours()}` : dd.getHours();
   const m = dd.getMinutes() < 10 ? `0${dd.getMinutes()}` : dd.getMinutes();
   const s = dd.getSeconds() < 10 ? `0${dd.getSeconds()}` : dd.getSeconds();
