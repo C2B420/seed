@@ -52,6 +52,7 @@ export default {
       left: 50%;
       top: 50%;
       border-radius: 50%;
+      box-shadow: 0 0 4px #323232;
     }
   }
 </style>

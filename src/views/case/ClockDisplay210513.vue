@@ -1,14 +1,14 @@
 <template>
   <div class="wrapper">
     <div class="inner">
-      <digital-flip-card :number="hour[0]"/>
-      <digital-flip-card :number="hour[1]"/>
+      <digital-flip-card :number="hour[0]" :preNumber="preHour[0]"/>
+      <digital-flip-card :number="hour[1]" :preNumber="preHour[1]"/>
       <colon/>
-      <digital-flip-card :number="minute[0]"/>
-      <digital-flip-card :number="minute[1]"/>
+      <digital-flip-card :number="minute[0]" :preNumber="preMinute[0]"/>
+      <digital-flip-card :number="minute[1]" :preNumber="preMinute[1]"/>
       <colon/>
-      <digital-flip-card :number="second[0]"/>
-      <digital-flip-card :number="second[1]"/>
+      <digital-flip-card :number="second[0]" :preNumber="preSecond[0]"/>
+      <digital-flip-card :number="second[1]" :preNumber="preSecond[1]"/>
     </div>
   </div>
 </template>
@@ -32,11 +32,15 @@ export default {
       hour: '00',
       minute: '00',
       second: '00',
+      preHour: '00',
+      preMinute: '00',
+      preSecond: '00',
     });
     let timer = null;
     onMounted(() => {
       timer = setInterval(() => {
-        [data.hour, data.minute, data.second] = GetTimeStr().split(':');
+        [data.preHour, data.preMinute, data.preSecond] = GetTimeStr(-1).split(':');
+        [data.hour, data.minute, data.second] = GetTimeStr(0).split(':');
       }, 1000);
     });
     onBeforeUnmount(() => {
