@@ -21,7 +21,8 @@
           <menu-item><i class="fa fa-gitlab"></i></menu-item>
         </li>
       </ul>
-      <div class="menu-icon" :class="{'menu-unfold': isUnfold}" @click="isUnfold = !isUnfold">
+      <div class="menu-icon" :class="{'menu-unfold': isUnfold}"
+           @click="isUnfold = !isUnfold; isClick = true">
         <div class="menu-icon-line"></div>
         <div class="menu-icon-line"></div>
         <div class="menu-icon-line"></div>
@@ -41,11 +42,15 @@ export default {
   data() {
     return {
       isUnfold: false,
+      isClick: false,
     };
   },
   computed: {
     itemClass() {
-      return { 'item-show': this.isUnfold, 'item-hidden': !this.isUnfold };
+      return {
+        'item-show': this.isUnfold && this.isClick,
+        'item-hidden': !this.isUnfold && this.isClick,
+      };
     },
   },
 };
@@ -62,12 +67,13 @@ export default {
     background-image: linear-gradient(to right, #ffba5a, #ff6c6e);
 
     .inner {
-      .absolute_center();
-      width: 62px;
-      height: 45px;
+      .absolute_margin_center();
+      width: 50px;
+      height: 50px;
 
       .menu-icon {
-        position: relative;
+        .absolute_margin_center();
+        padding-top: 2px;
 
         &:hover {
           .menu-icon-line {
@@ -92,7 +98,7 @@ export default {
         .menu-icon-line {
           width: 50px;
           height: 7px;
-          margin: 6px;
+          margin: 6px 0;
           background-color: rgba(255, 255, 255, 0.65);
           border-radius: 3px;
           transition: opacity 900ms, transform 900ms;
@@ -100,7 +106,7 @@ export default {
       }
 
       ul {
-        .absolute_center();
+        .absolute_margin_center();
 
         li {
           .absolute_hasWH_center(50, 50);

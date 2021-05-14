@@ -14,8 +14,8 @@ export default {
 
 <style scoped lang="less">
   .item {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.35);
@@ -24,14 +24,14 @@ export default {
       background-color: rgba(255, 255, 255, 0.5);
 
       span {
-        font-size: 35px;
+        font-size: 30px;
       }
     }
 
     span {
       color: rgba(255, 255, 255, 0.65);
-      line-height: 60px;
-      font-size: 30px;
+      line-height: 50px;
+      font-size: 26px;
     }
   }
 </style>
