@@ -208,20 +208,20 @@ export default {
     }
 
     .left-arrow {
-      .absolute_vertical_center();
+      .absolute_translate_vertical_center();
       .arrow_common();
       left: @_arrow_distance;
 
     }
 
     .right-arrow {
-      .absolute_vertical_center();
+      .absolute_translate_vertical_center();
       .arrow_common();
       right: @_arrow_distance;
     }
 
     .text-content {
-      .absolute_center();
+      .absolute_translate_center();
       margin-top: 100px;
       z-index: 3;
       width: 400px;
@@ -284,7 +284,7 @@ export default {
     }
 
     .loading-tips {
-      .absolute_center();
+      .absolute_translate_center();
       width: 150px;
       height: 30px;
       line-height: 30px;

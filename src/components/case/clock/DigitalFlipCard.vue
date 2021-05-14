@@ -113,7 +113,7 @@ export default {
     }
 
     .line {
-      .absolute_vertical_center();
+      .absolute_translate_vertical_center();
       width: 100%;
       height: 1px;
       background-color: gray;

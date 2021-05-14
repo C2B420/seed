@@ -61,7 +61,7 @@ export default {
     height: 100%;
 
     .inner {
-      .absolute_center();
+      .absolute_translate_center();
       display: flex;
     }
   }

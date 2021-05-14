@@ -81,7 +81,7 @@ export default {
     }
 
     .nav-control-btn {
-      .absolute_vertical_center();
+      .absolute_translate_vertical_center();
       right: -15px;
       width: 30px;
       height: 30px;
